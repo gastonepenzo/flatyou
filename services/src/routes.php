@@ -16,5 +16,4 @@ $app->post('/test', function (Request $request, Response $response, array $args)
 {
     $data = $request->getParams();
     return $response->withJson($data);
-    //return $response->getBody()->write('Hello!');
 });

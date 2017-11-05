@@ -28,6 +28,7 @@ class ComposerStaticInita95d2678de5626973c623cf32de83632
         array (
             'Symfony\\Component\\Yaml\\' => 23,
             'Slim\\Views\\' => 11,
+            'Slim\\Middleware\\' => 16,
             'Slim\\' => 5,
         ),
         'P' => 
@@ -77,6 +78,10 @@ class ComposerStaticInita95d2678de5626973c623cf32de83632
         'Slim\\Views\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/php-view/src',
+        ),
+        'Slim\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dyorg/slim-token-authentication/src',
         ),
         'Slim\\' => 
         array (
