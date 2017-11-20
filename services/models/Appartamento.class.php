@@ -1,6 +1,6 @@
 <?php
 
-namespace Flatyou\Models\Appartamento;
+namespace Flatyou\Models;
 
 
 class Appartamento

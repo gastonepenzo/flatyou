@@ -20,6 +20,9 @@ $app = new \Slim\App($settings);
 // Load db class
 require __DIR__ . '/../src/db.php';
 
+//Load models
+require __DIR__ . '/../models/Appartamento.class.php';
+
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
 
@@ -29,8 +32,6 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
-//Register models
-require __DIR__ . '/../models/Appartamento.class.php';
 
 // Run app
 $app->run();
