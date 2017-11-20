@@ -6,9 +6,9 @@ return [
 
         'db'=> [
             'host'     => 'localhost',
-            'user'     => 'flatyou',
-            'pass'     => 'Winstonblu82',
-            'name'     => 'flatyou'
+            'user'     => 'root',
+            'pass'     => 'c30,db',
+            'name'     => 'tmp2'
         ],
         
         // Monolog settings

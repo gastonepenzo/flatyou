@@ -29,5 +29,8 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
+//Register models
+require __DIR__ . '/../models/Appartamento.class.php';
+
 // Run app
 $app->run();
