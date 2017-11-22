@@ -21,6 +21,7 @@ $app = new \Slim\App($settings);
 require __DIR__ . '/../src/db.php';
 
 //Load models
+require __DIR__ . '/../models/Modello.class.php';
 require __DIR__ . '/../models/Appartamento.class.php';
 
 // Set up dependencies

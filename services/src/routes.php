@@ -8,8 +8,8 @@ use Flatyou\Models\Appartamento;
 // Routes
 $app->get('/', function (Request $request, Response $response, array $args) 
 {
-    $hostname = 'http://' . $request->getUri()->getHost();
-    $app = new Appartamento(1);
+    $a = new Appartamento('D8B05A0D');
+    echo $a->get('id_utente');
 });
 
 $app->post('/test', function (Request $request, Response $response, array $args) 

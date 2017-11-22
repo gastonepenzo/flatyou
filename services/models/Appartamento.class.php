@@ -3,7 +3,7 @@
 namespace Flatyou\Models;
 
 
-class Appartamento
+class Appartamento extends Modello
 {
     private $id;
     private $codice;
@@ -31,8 +31,11 @@ class Appartamento
     private $creato_il;
     private $modificato_il;
     
+    
     public function __construct($value)
     {
+        $db = self::dbInstance();
+        
         if(strlen($value) == 8)
         {
             $field = 'codice';
@@ -42,10 +45,22 @@ class Appartamento
             $field = 'id';
         }
         
-        $sql = 'SELECT * 
-                FROM appartamenti
-                WHERE ' . $field . ' = "' . $value . '"';
+        $db->where($field, $value);
+        $data = $db->getOne('appartamenti');
         
+        if($data)
+        {
+            foreach($data as $field => $value)
+            {
+                $this->{$field} = $value;
+            }
+        }
+        return null;
+    }
+    
+    public function get($var)
+    {
+        return $this->{$var};
     }
     
 }
