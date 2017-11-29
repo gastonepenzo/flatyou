@@ -2,14 +2,15 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Flatyou\Models\GoogleGeo;
 use Flatyou\Models\Appartamento;
+use Flatyou\Models\Utente;
 
 
-// Routes
+// Routes app
 $app->get('/', function (Request $request, Response $response, array $args) 
 {
-    $a = new Appartamento('D8B05A0D');
-    echo $a->get('id_utente');
+    $geo = GoogleGeo::get_position_from_address('35019', 'Tombolo', 'Padova');
 });
 
 $app->post('/test', function (Request $request, Response $response, array $args) 

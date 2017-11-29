@@ -10,12 +10,15 @@ return [
             'pass'     => 'c30,db',
             'name'     => 'tmp2'
         ],
-        
-        // Monolog settings
+       
         'logger' => [
             'name' => 'FLATYOU-SERVICES',
             'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
+        
+        'google' => [
+            'maps_api_key' => 'AIzaSyDIcRgn2HIAooRMKYoKrH3oI2ddiovI8QM'
+        ] 
     ],
 ];
