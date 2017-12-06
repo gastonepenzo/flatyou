@@ -24,6 +24,8 @@ require __DIR__ . '/../src/db.php';
 require __DIR__ . '/../models/Modello.class.php';
 require __DIR__ . '/../models/GoogleGeo.class.php';
 require __DIR__ . '/../models/Utente.class.php';
+require __DIR__ . '/../models/Stanza.class.php';
+require __DIR__ . '/../models/Posto.class.php';
 require __DIR__ . '/../models/Appartamento.class.php';
 
 // Set up dependencies

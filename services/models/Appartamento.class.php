@@ -64,4 +64,25 @@ class Appartamento extends Modello
         return $this->{$var};
     }
     
+    
+    public function getUser()
+    {
+        return new Utente($this->id_utente);
+    }
+    
+    public function getRooms()
+    {
+        $db = self::dbInstance();
+        
+        $db->where('id_appartamento', $this->id);
+        $res = $db->get('stanze');
+        $rooms = [];
+        foreach($res as $r)
+        {
+            $room_id = $r['id'];
+            $rooms[] = new Stanza($room_id);
+        }
+        return $rooms;
+    }
+    
 }
