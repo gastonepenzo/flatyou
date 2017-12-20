@@ -3,33 +3,33 @@
 namespace Flatyou\Models;
 
 
-class Appartamento extends Modello
+class Apartment extends Model
 {
     private $id;
-    private $codice;
-    private $id_utente;
-    private $titolo;
-    private $indirizzo;
-    private $numero_civico;
+    private $code;
+    private $user_id;
+    private $title;
+    private $address;
+    private $street_number;
     private $cap;
-    private $citta;
-    private $provincia;
-    private $tipologia;
-    private $fumatori;
-    private $lavatrice;
-    private $aria_condizionata;
+    private $town;
+    private $province;
+    private $typology;
+    private $smokers;
+    private $washing_machine;
+    private $air_conditioned;
     private $internet;
-    private $riscaldamento;
-    private $salotto;
-    private $televisione;
-    private $animali_domestici;
-    private $posto_auto;
-    private $posto_bici;
-    private $giardino;
-    private $metri_quadri;
+    private $heating;
+    private $living_room;
+    private $television;
+    private $pets;
+    private $car_parking;
+    private $bike_parking;
+    private $garden;
+    private $mq;
     private $extra;
-    private $creato_il;
-    private $modificato_il;
+    private $created_at;
+    private $modified_at;
     
     
     public function __construct($value)
@@ -38,7 +38,7 @@ class Appartamento extends Modello
         
         if(strlen($value) == 8)
         {
-            $field = 'codice';
+            $field = 'code';
         }
         else
         {
@@ -46,8 +46,8 @@ class Appartamento extends Modello
         }
         
         $db->where($field, $value);
-        $db->where('attivo', 1);
-        $data = $db->getOne('appartamenti');
+        $db->where('active', 1);
+        $data = $db->getOne('apartments');
         
         if($data)
         {
@@ -67,20 +67,20 @@ class Appartamento extends Modello
     
     public function getUser()
     {
-        return new Utente($this->id_utente);
+        return new User($this->user_id);
     }
     
     public function getRooms()
     {
         $db = self::dbInstance();
         
-        $db->where('id_appartamento', $this->id);
-        $res = $db->get('stanze');
+        $db->where('apartment_id', $this->id);
+        $res = $db->get('rooms');
         $rooms = [];
         foreach($res as $r)
         {
             $room_id = $r['id'];
-            $rooms[] = new Stanza($room_id);
+            $rooms[] = new Room($room_id);
         }
         return $rooms;
     }

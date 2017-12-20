@@ -3,7 +3,7 @@
 namespace Flatyou\Models;
 
 
-class Modello
+class Model
 {   
     public static function dbInstance()
     {   

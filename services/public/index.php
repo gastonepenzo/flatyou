@@ -21,12 +21,12 @@ $app = new \Slim\App($settings);
 require __DIR__ . '/../src/db.php';
 
 //Load models
-require __DIR__ . '/../models/Modello.class.php';
+require __DIR__ . '/../models/Model.class.php';
 require __DIR__ . '/../models/GoogleGeo.class.php';
-require __DIR__ . '/../models/Utente.class.php';
-require __DIR__ . '/../models/Stanza.class.php';
-require __DIR__ . '/../models/Posto.class.php';
-require __DIR__ . '/../models/Appartamento.class.php';
+require __DIR__ . '/../models/User.class.php';
+require __DIR__ . '/../models/Room.class.php';
+require __DIR__ . '/../models/Bed.class.php';
+require __DIR__ . '/../models/Apartment.class.php';
 
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';

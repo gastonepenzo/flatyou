@@ -3,17 +3,21 @@
 namespace Flatyou\Models;
 
 
-class Stanza extends Modello
+class Bed extends Model
 {
     private $id;
-    private $id_appartamento;
+    private $room_id;
+    private $typology;
+    private $state;
+    
     
     public function __construct($value)
     {
         $db = self::dbInstance();
-        
+       
         $db->where('id', $value);
-        $data = $db->getOne('stanze');
+        $data = $db->getOne('beds');
+        
         if($data)
         {
             foreach($data as $field => $value)
@@ -29,9 +33,9 @@ class Stanza extends Modello
         return $this->{$var};
     }
     
-    public function getApartment()
+    public function getRoom()
     {
-        return new Appartamento($this->id_appartamento);
+        return new Room($this->room_id);
     }
     
 }

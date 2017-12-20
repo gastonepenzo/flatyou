@@ -3,23 +3,23 @@
 namespace Flatyou\Models;
 
 
-class Utente extends Modello
+class User extends Model
 {
     private $id;
-    private $codice;
+    private $code;
     private $email;
     private $username;
     private $password;
-    private $nome;
-    private $cognome;
-    private $sesso;
-    private $compleanno;
-    private $fumatore;
-    private $impiego;
-    private $foto;
-    private $biografia;
-    private $creato_il;
-    private $modificato_il;
+    private $name;
+    private $surname;
+    private $gender;
+    private $birthday;
+    private $smoker;
+    private $job;
+    private $photo;
+    private $biography;
+    private $created_at;
+    private $modified_il;
     
     
     public function __construct($value)
@@ -28,7 +28,7 @@ class Utente extends Modello
         
         if(strlen($value) == 8)
         {
-            $field = 'codice';
+            $field = 'code';
         }
         else
         {
@@ -36,8 +36,8 @@ class Utente extends Modello
         }
         
         $db->where($field, $value);
-        $db->where('attivo', 1);
-        $data = $db->getOne('utenti');
+        $db->where('active', 1);
+        $data = $db->getOne('users');
         
         if($data)
         {
@@ -58,9 +58,9 @@ class Utente extends Modello
     {
         $db = self::dbInstance();
         
-        $db->where('id_utente', $this->id);
-        $db->where('attivo', 1);
-        $apartment = $db->getOne('appartamenti');
+        $db->where('user_id', $this->id);
+        $db->where('active', 1);
+        $apartment = $db->getOne('apartments');
         
         if($apartment)
         {

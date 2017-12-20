@@ -2,7 +2,7 @@
 
 namespace Flatyou\Models;
 
-class GoogleGeo extends Modello
+class GoogleGeo extends Model
 {   
     public static function get_position_from_address($cap, $town, $province, $address = null, $number = null)
     {

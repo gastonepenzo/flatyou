@@ -3,16 +3,16 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Flatyou\Models\GoogleGeo;
-use Flatyou\Models\Appartamento;
-use Flatyou\Models\Utente;
-use Flatyou\Models\Stanza;
-use Flatyou\Models\Posto;
+use Flatyou\Models\Apartment;
+use Flatyou\Models\User;
+use Flatyou\Models\Room;
+use Flatyou\Models\Bed;
 
 
 // Routes app
 $app->get('/', function (Request $request, Response $response, array $args) 
 {
-    $app = new Appartamento('2');
+    $app = new Apartment('2');
     $rooms = $app->getRooms();
     foreach($rooms as $r)
     {
