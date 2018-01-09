@@ -30,14 +30,69 @@ class GoogleGeo extends Model
                 $lat  = $res_decoded['results'][0]->geometry->location->lat;
                 $lng  = $res_decoded['results'][0]->geometry->location->lng;
                 $type = $res_decoded['results'][0]->geometry->location_type;
-
-                return ['lat' => $lat, 'lng' => $lng, 'type' => $type , 'url' => $url, 'response' => $res];
+                switch ($type)
+                {
+                    case 'ROOFTOP';
+                        $type_label = 'precise';
+                        break;
+                    case 'RANGE_INTERPOLATED';
+                        $type_label = 'range_interpolated';
+                        break;
+                    case 'GEOMETRIC_CENTER';
+                        $type_label = 'geometric_center';
+                        break;
+                    case 'APPROXIMATE';
+                        $type_label = 'approximate';
+                        break;
+                    default:
+                        $type_label = 'error';
+                        break;
+                }
+                if($type_label == 'error')
+                {
+                    return ['error'=>'WRONG_TYPE (' . $type . ')', 'url'=>$url];
+                }
+                else
+                {
+                    return ['lat' => $lat, 'lng' => $lng, 'type' => $type_label , 'url' => $url, 'response' => $res];
+                }
             }
             else
             {
-                return ['error' => $res_decoded['status'], 'url' => $url, 'response' => $res];
+                return ['type' => 'not_found', 'url' => $url, 'response' => $res];
             }
         }
         return ['error'=>'EMPTY_RESPONSE', 'url'=>$url];
-    }    
+    }
+
+    public static function get_map($lat, $lng, $width='800px', $height='600px', $zoom = 2)
+    {
+        $api_key = $GLOBALS['settings']['settings']['google']['maps_api_key'];
+        
+        $html = '<div id="map"></div>
+                 <style>
+                    #map {
+                        height: ' .$height . ';
+                        width: ' . $width . ';
+                    }
+                </style>
+                <script>
+                    function initMap() {
+                        var app_pos = {lat: ' . $lat . ', lng: ' . $lng . '};
+                        var map = new google.maps.Map(document.getElementById(\'map\'), {
+                          zoom: ' . $zoom. ',
+                          center: app_pos
+                        });
+                        var marker = new google.maps.Marker({
+                            position: app_pos,
+                            map: map
+                        });
+                    }
+                    </script>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&callback=initMap">
+                </script>';
+        return $html;
+    }
+
+    
 }

@@ -28,6 +28,8 @@ class Apartment extends Model
     private $garden;
     private $mq;
     private $extra;
+    private $lat;
+    private $lng;
     private $created_at;
     private $modified_at;
     
@@ -59,6 +61,16 @@ class Apartment extends Model
         return null;
     }
     
+    public function exists()
+    {
+        if($this->id)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    
     public function get($var)
     {
         return $this->{$var};
@@ -85,4 +97,46 @@ class Apartment extends Model
         return $rooms;
     }
     
+    public function calculatePosition()
+    {
+        return GoogleGeo::get_position_from_address($this->cap, $this->town, $this->province, $this->address, $this->street_number);
+    }
+    
+    public function updatePosition()
+    {
+        $db = self::dbInstance();
+        
+        $lat = null;
+        $lng = null;
+        $position_result = null;
+        
+        $position = $this->calculatePosition();
+        if(isset($position['error']))
+        {
+            $position_result = 'error';
+        }
+        else
+        {
+            $position_result = $position['type'];
+            if($position_result != 'not_found')
+            {
+                $lat = $position['lat'];
+                $lng = $position['lng'];
+            }
+        }
+        
+        $data = array(
+            'lat' => $lat,
+            'lng' => $lng,
+            'position_result' => $position_result,
+        );
+        
+        $db->where('id', $this->id);
+        return $db->update('apartments', $data);
+    }
+    
+    public function getMap($width = '800px', $height = '600px', $zoom = 13)
+    {
+        return GoogleGeo::get_map($this->lat, $this->lng, $width, $height, $zoom);
+    }
 }

@@ -12,11 +12,14 @@ use Flatyou\Models\Bed;
 // Routes app
 $app->get('/', function (Request $request, Response $response, array $args) 
 {
-    $app = new Apartment('2');
-    $rooms = $app->getRooms();
-    foreach($rooms as $r)
+    $app = new Apartment('1');
+    if(!$app->exists())
     {
-        var_dump($r->getApartment());
+        var_dump("non esiste");
+    }
+    else
+    {
+        echo '<html><body>' . $app->getMap() . '</body></html>';
     }
 });
 
