@@ -77,6 +77,24 @@ class Apartment extends Model
     }
     
     
+    public static function getAll($only_active = true)
+    {
+        $db = self::dbInstance();
+        
+        $apartments = array();
+        
+        if($only_active)
+        {
+            $db->where('active', 1);
+        }
+        $res = $db->get('apartments');
+        foreach($res as $r)
+        {
+            $apartments[] = new Apartment($r['id']);
+        }
+        return $apartments;
+    }
+    
     public function getUser()
     {
         return new User($this->user_id);
@@ -139,4 +157,6 @@ class Apartment extends Model
     {
         return GoogleGeo::get_map($this->lat, $this->lng, $width, $height, $zoom);
     }
+    
+    
 }
