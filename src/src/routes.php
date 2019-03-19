@@ -10,9 +10,10 @@ use Flatyou\Models\Bed;
 
 
 // Routes app
-$app->get('/', function (Request $request, Response $response, array $args) 
+$app->get('/apartment/{code:[A-Za-z0-9]{8}}', function (Request $request, Response $response, array $args) 
 {
-    $app = new Apartment('1');
+    //var_dump($args['id']);
+    $app = new Apartment($args['code']);
     if(!$app->exists())
     {
         var_dump("non esiste");

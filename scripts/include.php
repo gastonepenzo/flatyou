@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_PATH', '../services');
+define('BASE_PATH', '../src');
 
 $settings = require BASE_PATH . '/src/settings.php';
 

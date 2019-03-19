@@ -47,7 +47,7 @@ class Apartment extends Model
             $field = 'id';
         }
         
-        $db->where($field, $value);
+        $db->where($field, strtoupper($value));
         $db->where('active', 1);
         $data = $db->getOne('apartments');
         
