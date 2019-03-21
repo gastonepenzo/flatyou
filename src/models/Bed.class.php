@@ -5,10 +5,10 @@ namespace Flatyou\Models;
 
 class Bed extends Model
 {
-    private $id;
-    private $room_id;
-    private $typology;
-    private $state;
+    var $id;
+    var $room_id;
+    var $typology;
+    var $state;
     
     
     public function __construct($value)

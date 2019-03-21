@@ -5,34 +5,36 @@ namespace Flatyou\Models;
 
 class Apartment extends Model
 {
-    private $id;
-    private $code;
-    private $user_id;
-    private $title;
-    private $address;
-    private $street_number;
-    private $cap;
-    private $town;
-    private $province;
-    private $typology;
-    private $smokers;
-    private $washing_machine;
-    private $air_conditioned;
-    private $internet;
-    private $heating;
-    private $living_room;
-    private $television;
-    private $pets;
-    private $car_parking;
-    private $bike_parking;
-    private $garden;
-    private $mq;
-    private $extra;
-    private $lat;
-    private $lng;
-    private $created_at;
-    private $modified_at;
-    
+    var $id;
+    var $code;
+    var $user_id;
+    var $title;
+    var $address;
+    var $street_number;
+    var $cap;
+    var $town;
+    var $province;
+    var $typology;
+    var $smokers;
+    var $washing_machine;
+    var $air_conditioned;
+    var $internet;
+    var $heating;
+    var $living_room;
+    var $television;
+    var $pets;
+    var $car_parking;
+    var $bike_parking;
+    var $garden;
+    var $mq;
+    var $extra;
+    var $lat;
+    var $lng;
+    var $state;
+    var $position_result;
+    var $active;
+    var $created_at;
+    var $modified_at;
     
     public function __construct($value)
     {

@@ -5,8 +5,8 @@ namespace Flatyou\Models;
 
 class Room extends Model
 {
-    private $id;
-    private $apartment_id;
+    var $id;
+    var $apartment_id;
     
     public function __construct($value)
     {

@@ -21,10 +21,9 @@ $app = new \Slim\App($settings);
 $container = $app->getContainer();
 
 // Register component on container
-$container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig('path/to/templates', [
-        'cache' => 'path/to/cache'
-    ]);
+$container['view'] = function ($container) 
+{
+    $view = new \Slim\Views\Twig('twig/templates', ['cache' => $container->get('settings')['twig_cache']]);
 
     // Instantiate and add Slim specific extension
     $router = $container->get('router');

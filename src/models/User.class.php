@@ -5,22 +5,21 @@ namespace Flatyou\Models;
 
 class User extends Model
 {
-    private $id;
-    private $code;
-    private $email;
-    private $username;
-    private $password;
-    private $name;
-    private $surname;
-    private $gender;
-    private $birthday;
-    private $smoker;
-    private $job;
-    private $photo;
-    private $biography;
-    private $created_at;
-    private $modified_il;
-    
+    var $id;
+    var $code;
+    var $email;
+    var $username;
+    var $password;
+    var $name;
+    var $surname;
+    var $gender;
+    var $birthday;
+    var $smoker;
+    var $job;
+    var $photo;
+    var $biography;
+    var $created_at;
+    var $modified_il;
     
     public function __construct($value)
     {
