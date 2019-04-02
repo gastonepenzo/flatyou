@@ -6,9 +6,24 @@
  * Made By MaterializeCSS.com
  */
 
-.icon-block {
+.icon-block 
+{
   padding: 0 15px;
 }
-.icon-block .material-icons {
-	font-size: inherit;
+
+.icon-block .material-icons 
+{
+    font-size: inherit;
+}
+
+.rating_active 
+{
+    color:#FFC20B;
+    fill: currentColor;    
+}
+
+.rating_not_active 
+{
+    color:grey;
+    fill: currentColor;    
 }

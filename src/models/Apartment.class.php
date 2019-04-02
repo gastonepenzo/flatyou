@@ -9,6 +9,7 @@ class Apartment extends Model
     var $code;
     var $user_id;
     var $title;
+    var $description;
     var $address;
     var $street_number;
     var $cap;
@@ -117,6 +118,22 @@ class Apartment extends Model
         return $rooms;
     }
     
+    public function getPhotos()
+    {
+        $db = self::dbInstance();
+        
+        $db->where('apartment_id', $this->id);
+        $db->orderBy('is_main_photo', 'desc');
+        $res = $db->get('photos');
+        $photos = [];
+        foreach($res as $r)
+        {
+            $photo_id = $r['id'];
+            $photos[] = new Photo($photo_id);
+        }
+        return $photos;
+    }
+    
     public function calculatePosition()
     {
         return GoogleGeo::get_position_from_address($this->cap, $this->town, $this->province, $this->address, $this->street_number);
@@ -160,5 +177,31 @@ class Apartment extends Model
         return GoogleGeo::get_map($this->lat, $this->lng, $width, $height, $zoom);
     }
     
+    
+    public function getRating()
+    {
+        return 4;
+    }
+    
+    public function getRatingHtml()
+    {
+        $rating = $this->getRating();
+        $html = '<div class="rating_stars">';
+        for($i=0; $i<$rating; $i++)
+        {
+            $html .=  '<svg class="rating_active" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">' .
+                      '<path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>' .
+                      '</svg>';
+        }
+        for($i=0; $i<(5-$rating); $i++)
+        {
+            $html .=  '<svg class="rating_not_active" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">' .
+                      '<path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>' .
+                      '</svg>';
+        }
+        $html.= '</div>';
+        return $html;
+        
+    }
     
 }

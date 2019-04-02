@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Creato il: Mar 27, 2019 alle 12:38
+-- Creato il: Apr 02, 2019 alle 14:37
 -- Versione del server: 5.7.25-0ubuntu0.16.04.2
 -- Versione PHP: 7.2.15-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -88,6 +88,27 @@ INSERT INTO `beds` (`id`, `room_id`, `typology`, `state`, `occupied_by`, `notes`
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `photos`
+--
+
+CREATE TABLE `photos` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `apartment_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8_bin NOT NULL,
+  `is_main_photo` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `photos`
+--
+
+INSERT INTO `photos` (`id`, `apartment_id`, `name`, `is_main_photo`) VALUES
+(1, 1, '1.jpg', 1),
+(2, 1, '2.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `rooms`
 --
 
@@ -161,6 +182,14 @@ ALTER TABLE `beds`
   ADD KEY `occupied_by` (`occupied_by`);
 
 --
+-- Indici per le tabelle `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `apartment_id` (`apartment_id`),
+  ADD KEY `default` (`is_main_photo`);
+
+--
 -- Indici per le tabelle `rooms`
 --
 ALTER TABLE `rooms`
@@ -192,6 +221,11 @@ ALTER TABLE `apartments`
 ALTER TABLE `beds`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT per la tabella `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT per la tabella `rooms`
 --
 ALTER TABLE `rooms`
@@ -216,6 +250,12 @@ ALTER TABLE `apartments`
 --
 ALTER TABLE `beds`
   ADD CONSTRAINT `fk_beds_rooms` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `photos`
+--
+ALTER TABLE `photos`
+  ADD CONSTRAINT `fk_photos_apartments` FOREIGN KEY (`apartment_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `rooms`

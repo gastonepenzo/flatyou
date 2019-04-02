@@ -1,7 +1,13 @@
 (function($){
   $(function(){
 
-    $('.sidenav').sidenav();
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+  $('.sidenav').sidenav();
+    
+  $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true,
+  });
+        
+    
+  });
+})(jQuery);
