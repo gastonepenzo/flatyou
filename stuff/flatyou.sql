@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Creato il: Apr 02, 2019 alle 14:37
+-- Creato il: Apr 02, 2019 alle 17:09
 -- Versione del server: 5.7.25-0ubuntu0.16.04.2
 -- Versione PHP: 7.2.15-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -25,6 +25,7 @@ CREATE TABLE `apartments` (
   `code` char(8) COLLATE utf8_bin NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL,
   `title` varchar(100) COLLATE utf8_bin NOT NULL,
+  `description` text COLLATE utf8_bin,
   `address` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `street_number` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `cap` char(5) COLLATE utf8_bin NOT NULL,
@@ -57,8 +58,8 @@ CREATE TABLE `apartments` (
 -- Dump dei dati per la tabella `apartments`
 --
 
-INSERT INTO `apartments` (`id`, `code`, `user_id`, `title`, `address`, `street_number`, `cap`, `town`, `province`, `state`, `typology`, `smokers`, `washing_machine`, `air_conditioned`, `internet`, `heating`, `living_room`, `television`, `pets`, `car_parking`, `bike_parking`, `garden`, `mq`, `extra`, `lat`, `lng`, `position_result`, `created_at`, `modified_at`, `active`) VALUES
-(1, 'LV0U7HBP', 1, 'Appartamento Pontecorvo', 'Piazzale Pontecorvo', '7', '35121', 'Padova', 'PD', 'ITA', 'apartment', 1, 0, 0, 1, 'autonomous', 1, 1, 0, 0, 1, 0, NULL, NULL, 45.401165, 11.884337, 'precise', '2019-03-19 17:29:45', NULL, 1);
+INSERT INTO `apartments` (`id`, `code`, `user_id`, `title`, `description`, `address`, `street_number`, `cap`, `town`, `province`, `state`, `typology`, `smokers`, `washing_machine`, `air_conditioned`, `internet`, `heating`, `living_room`, `television`, `pets`, `car_parking`, `bike_parking`, `garden`, `mq`, `extra`, `lat`, `lng`, `position_result`, `created_at`, `modified_at`, `active`) VALUES
+(1, 'LV0U7HBP', 1, 'Appartamento Pontecorvo', 'L\'appartamento Pontecorvo si trova in una piazzetta tranquilla in centro a Padova. L\'edificio non datato ma molto caldo e accogliente. Tutti i servizi sono vicini (tabaccheria, panificio, supermercato..). Le persone che lo abitano solo solari e si vogliono bene.', 'Piazzale Pontecorvo', '7', '35121', 'Padova', 'PD', 'ITA', 'apartment', 1, 0, 0, 1, 'autonomous', 1, 1, 0, 0, 1, 0, NULL, NULL, 45.401165, 11.884337, 'precise', '2019-03-19 17:29:45', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -103,8 +104,9 @@ CREATE TABLE `photos` (
 --
 
 INSERT INTO `photos` (`id`, `apartment_id`, `name`, `is_main_photo`) VALUES
-(1, 1, '1.jpg', 1),
-(2, 1, '2.jpg', 0);
+(1, 1, 'tkqvlbmdim.jpg', 0),
+(2, 1, 'klvptctgca.jpg', 0),
+(3, 1, 'kbmbvujxve.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ ALTER TABLE `beds`
 -- AUTO_INCREMENT per la tabella `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT per la tabella `rooms`
 --
