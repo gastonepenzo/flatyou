@@ -9,6 +9,7 @@ class Bed extends Model
     var $room_id;
     var $typology;
     var $state;
+    var $occupied_by;
     
     
     public function __construct($value)
