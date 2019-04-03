@@ -41,6 +41,7 @@ require __DIR__ . '/../models/Model.class.php';
 require __DIR__ . '/../models/GoogleGeo.class.php';
 require __DIR__ . '/../models/User.class.php';
 require __DIR__ . '/../models/Photo.class.php';
+require __DIR__ . '/../models/Comment.class.php';
 require __DIR__ . '/../models/Room.class.php';
 require __DIR__ . '/../models/Bed.class.php';
 require __DIR__ . '/../models/Apartment.class.php';

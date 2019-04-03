@@ -66,6 +66,5 @@ class User extends Model
             return $apartment;
         }
         return null;
-    }
-    
+    }    
 }

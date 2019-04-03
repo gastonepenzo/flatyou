@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Creato il: Apr 02, 2019 alle 17:09
+-- Creato il: Apr 03, 2019 alle 16:52
 -- Versione del server: 5.7.25-0ubuntu0.16.04.2
 -- Versione PHP: 7.2.15-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -89,6 +89,28 @@ INSERT INTO `beds` (`id`, `room_id`, `typology`, `state`, `occupied_by`, `notes`
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `apartment_id` int(10) UNSIGNED NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `apartment_id`, `comment`, `created_at`) VALUES
+(1, 1, 1, 'Bellissimo posto! Sono andato a vederlo e mi è piaciuto un sacco. Coinquilini simpaticissimi. La camera singola però è un po\' piccola', '2019-04-03 16:44:05'),
+(2, 2, 1, 'Sembra interessante! C\'è posto auto o bici? E\' possibile portare animali con se? Grazie.', '2019-04-03 16:48:09');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `photos`
 --
 
@@ -158,7 +180,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `code`, `email`, `username`, `password`, `name`, `surname`, `gender`, `birthday`, `smoker`, `job`, `photo`, `biography`, `created_at`, `modified_at`, `active`) VALUES
-(1, 'ZWBIORTM', 'gastone.penzo@gmail.com', 'belsen', '313f6f32856c39256f1cef5432e17bbe94ac951f', 'Gastone', 'Penzo', 'M', '2019-02-26', 'yes', 'employed', 0, NULL, '2019-03-19 17:21:44', NULL, 1);
+(1, 'ZWBIORTM', 'gastone.penzo@gmail.com', 'belsen', '313f6f32856c39256f1cef5432e17bbe94ac951f', 'Gastone', 'Penzo', 'M', '2019-02-26', 'yes', 'employed', 0, NULL, '2019-03-19 17:21:44', NULL, 1),
+(2, 'GBVSTKIO', 'renato.rossi@gmail.com', 'freedesire82', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'Renato', 'Rossi', 'M', '1979-09-17', 'occasional', 'employed', 0, 'Ciao, sono un ragazzo simpatico, sensibile e molto dolce.', '2019-04-03 16:47:55', NULL, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -182,6 +205,14 @@ ALTER TABLE `beds`
   ADD KEY `state` (`state`),
   ADD KEY `typology` (`typology`),
   ADD KEY `occupied_by` (`occupied_by`);
+
+--
+-- Indici per le tabelle `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `apartment_id` (`apartment_id`);
 
 --
 -- Indici per le tabelle `photos`
@@ -223,6 +254,11 @@ ALTER TABLE `apartments`
 ALTER TABLE `beds`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT per la tabella `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT per la tabella `photos`
 --
 ALTER TABLE `photos`
@@ -236,7 +272,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -252,6 +288,13 @@ ALTER TABLE `apartments`
 --
 ALTER TABLE `beds`
   ADD CONSTRAINT `fk_beds_rooms` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `fk_comments_apartments` FOREIGN KEY (`apartment_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `photos`

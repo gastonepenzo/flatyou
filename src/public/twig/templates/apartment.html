@@ -55,7 +55,9 @@
             <div class="card">
                 <div class="card-content">
                   <span class="card-title grey-text text-darken-4">Commenti</span>
-                  <p>Blablabla</p>
+                    {% for comment in apartment.getComments() %}
+                        <p>{{comment.comment}}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>

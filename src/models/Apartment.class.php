@@ -134,6 +134,23 @@ class Apartment extends Model
         return $photos;
     }
     
+    
+    public function getComments()
+    {
+        $db = self::dbInstance();
+        
+        $db->where('apartment_id', $this->id);
+        $db->orderBy('created_at', 'desc');
+        $res = $db->get('comments');
+        $comments = [];
+        foreach($res as $r)
+        {
+            $comment_id = $r['id'];
+            $comments[] = new Comment($comment_id);
+        }
+        return $comments;
+    }
+    
     public function calculatePosition()
     {
         return GoogleGeo::get_position_from_address($this->cap, $this->town, $this->province, $this->address, $this->street_number);
