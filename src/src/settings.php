@@ -3,7 +3,7 @@
 $settings = [
     'settings' => [
         'google' => [
-            'maps_api_key' => 'AIzaSyDIcRgn2HIAooRMKYoKrH3oI2ddiovI8QM'
+            'maps_api_key' => 'AIzaSyDgIEKrsuRlWqAQWEgmTTPp4V1mAjxh4tE'
         ],
         'photos_path' => '/img/'
     ],
