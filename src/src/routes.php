@@ -9,7 +9,16 @@ use Flatyou\Models\Room;
 use Flatyou\Models\Bed;
 
 
-// Routes app
+//Home
+$app->get('/', function (Request $request, Response $response, array $args) 
+{
+    return $this->view->render($response, 'home.html');
+    
+})->setName('homepage');
+
+
+
+//Apartment
 $app->get('/apartment/{code:[A-Za-z0-9]{8}}', function (Request $request, Response $response, array $args) 
 {
     $apartment = new Apartment($args['code']);
@@ -22,6 +31,5 @@ $app->get('/apartment/{code:[A-Za-z0-9]{8}}', function (Request $request, Respon
         return $this->view->render($response, 'apartment.html', ['apartment' => $apartment]);
     }
 })->setName('profile_apartment');
-
 
 

@@ -172,7 +172,7 @@ class Apartment extends Model
         return $db->update('apartments', $data);
     }
     
-    public function getMap($width = '800px', $height = '600px', $zoom = 13)
+    public function getMap($width = '640px', $height = '480px', $zoom = 13)
     {
         return GoogleGeo::get_map($this->lat, $this->lng, $width, $height, $zoom);
     }

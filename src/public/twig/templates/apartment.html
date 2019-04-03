@@ -1,8 +1,9 @@
 {% extends "page.html" %}
 
 {% block meta_title %}Appartamento{% endblock %}
-
 {% block meta_description %}Appartamento{% endblock %}
+
+{% block js %}<script type="text/javascript" src="/js/apartment.js"></script>{% endblock %}
 
 {% block body %}
 <nav class="light-blue lighten-1" role="navigation">
@@ -26,32 +27,41 @@
                 <a class="carousel-item"><img src="{{photo.getUrl()}}" /></a>
             {% endfor %}
             </div>
-            <div class="card">
+            <div class="card first_card">
             <div class="card-content">
-                <h5>{{apartment.title}}</h5>
+                <h5 class="amber-text text-darken-3">{{apartment.title}}</h5>
                 {{apartment.getRatingHtml() | raw}}
                 <p>{{apartment.description}}</p>
             </div>
-            <div class="card-tabs">
-              <ul class="tabs tabs-fixed-width">
-                <li class="tab"><a href="#test4">Test 1</a></li>
-                <li class="tab"><a class="active" href="#test5">Test 2</a></li>
-                <li class="tab"><a href="#test6">Test 3</a></li>
-                <li class="tab"><a href="#test4">Test 1</a></li>
-                <li class="tab"><a class="active" href="#test5">Test 2</a></li>
-                <li class="tab"><a href="#test6">Test 3</a></li>
-              </ul>
-            </div>
-            <div class="card-content grey lighten-4">
-              <div id="test4">Test 1</div>
-              <div id="test5">Test 2</div>
-              <div id="test6">Test 3</div>
-            </div>
           </div>
+            <div class="card">
+                <div class="card-content">
+                  <span class="card-title blue-text text-lighten-1">INFORMAZIONI</span>
+                  <p>Blablabla</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                  <span class="card-title blue-text text-lighten-1">STANZE</span>
+                  <p>Blablabla</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                  <span class="card-title blue-text text-lighten-1">POSIZIONE</span>
+                  <p>{{apartment.getMap() | raw}}</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                  <span class="card-title blue-text text-lighten-1">COMMENTI</span>
+                  <p>Blablabla</p>
+                </div>
+            </div>
+        </div>
         <div class="col s5">
             
         </div>
-    </div>
       </div>
 
 <!--  <div class="container">
@@ -128,3 +138,5 @@
   </footer>
 
 {% endblock %}
+
+
