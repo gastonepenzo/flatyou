@@ -197,7 +197,20 @@ class Apartment extends Model
     
     public function getRating()
     {
-        return 4;
+        $db = self::dbInstance();
+        
+        $db->where('apartment_id', $this->id);
+        $res = $db->get('rating');
+        if(!empty($res))
+        {
+            $total = 0;
+            foreach($res as $r)
+            {
+                $total += $r['rating'];
+            }
+            return round($total/count($res));
+        }
+        return 0;
     }
     
     public function getRatingHtml()
@@ -206,13 +219,13 @@ class Apartment extends Model
         $html = '<div class="rating_stars">';
         for($i=0; $i<$rating; $i++)
         {
-            $html .=  '<svg class="rating_active" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">' .
+            $html .=  '<svg class="rating-active" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">' .
                       '<path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>' .
                       '</svg>';
         }
         for($i=0; $i<(5-$rating); $i++)
         {
-            $html .=  '<svg class="rating_not_active" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">' .
+            $html .=  '<svg class="rating-not-active" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">' .
                       '<path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>' .
                       '</svg>';
         }

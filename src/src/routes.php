@@ -12,6 +12,7 @@ use Flatyou\Models\Bed;
 //Home
 $app->get('/', function (Request $request, Response $response, array $args) 
 {
+    //Mail::send('gastone.penzo@gmail.com', 'g.penzo@webster.it', 'Prova', 'Gasprova');
     return $this->view->render($response, 'home.html');
     
 })->setName('homepage');

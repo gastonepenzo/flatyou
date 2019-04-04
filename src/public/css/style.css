@@ -16,21 +16,21 @@
     font-size: inherit;
 }
 
-.rating_active 
+.rating-active 
 {
     color:#FFC20B;
     fill: currentColor;    
 }
 
-.rating_not_active 
+.rating-not-active 
 {
     color:grey;
     fill: currentColor;    
 }
 
-.first_card
+.first-card
 {
-    margin-top: 0px;
+    margin-top: 15px ;
 }
 
 .card-title

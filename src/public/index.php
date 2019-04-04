@@ -35,6 +35,7 @@ $container['view'] = function ($container)
 
 // Load db class
 require __DIR__ . '/../src/db.php';
+require __DIR__ . '/../src/mail.php';
 
 //Load models
 require __DIR__ . '/../models/Model.class.php';

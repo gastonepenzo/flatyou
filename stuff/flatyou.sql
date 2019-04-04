@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Creato il: Apr 03, 2019 alle 16:52
+-- Creato il: Apr 04, 2019 alle 14:37
 -- Versione del server: 5.7.25-0ubuntu0.16.04.2
--- Versione PHP: 7.2.15-1+ubuntu16.04.1+deb.sury.org+1
+-- Versione PHP: 7.2.16-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -133,6 +133,27 @@ INSERT INTO `photos` (`id`, `apartment_id`, `name`, `is_main_photo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `rating`
+--
+
+CREATE TABLE `rating` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `apartment_id` int(10) UNSIGNED NOT NULL,
+  `rating` tinyint(3) UNSIGNED NOT NULL DEFAULT '3',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `rating`
+--
+
+INSERT INTO `rating` (`user_id`, `apartment_id`, `rating`, `created_at`) VALUES
+(1, 1, 5, '2019-04-04 12:32:58'),
+(2, 1, 4, '2019-04-04 12:32:58');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `rooms`
 --
 
@@ -223,6 +244,13 @@ ALTER TABLE `photos`
   ADD KEY `default` (`is_main_photo`);
 
 --
+-- Indici per le tabelle `rating`
+--
+ALTER TABLE `rating`
+  ADD UNIQUE KEY `user_id` (`user_id`,`apartment_id`),
+  ADD KEY `apartment_id` (`apartment_id`);
+
+--
 -- Indici per le tabelle `rooms`
 --
 ALTER TABLE `rooms`
@@ -301,6 +329,13 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `photos`
   ADD CONSTRAINT `fk_photos_apartments` FOREIGN KEY (`apartment_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `fk_rating_apartments` FOREIGN KEY (`apartment_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rating_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `rooms`
