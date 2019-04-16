@@ -1,15 +1,17 @@
 <?php
 
+define('FYENV', 'development');
+
 $settings = [
     'settings' => [
         'google' => [
             'maps_api_key' => 'AIzaSyDgIEKrsuRlWqAQWEgmTTPp4V1mAjxh4tE'
         ],
-        'photos_path' => '/img/'
+        'photos_path' => '/img/',
     ],
 ];
 
-switch($_SERVER['FYENV'])
+switch(FYENV)
 {
     case 'development':
         $settings['settings']['host'] = 'http://dev.flatyou.it';
@@ -29,12 +31,15 @@ switch($_SERVER['FYENV'])
             'password' => 'Winston82',
             'auth'     => true,
             'secure'   => 'tls',
-            'port'     => 587
-            
+            'port'     => 587            
+        ];
+        $settings['settings']['search'] = [
+            'host' => 'localhost',
+            'port' => '9200'
         ];
         break;
     default:
-        $settings['settings']['host'] = 'http://www.flatyou.it';
+        $settings['settings']['host'] = 'https://www.flatyou.it';
         $settings['settings']['db']= [
             'host'     => 'localhost',
             'user'     => 'flatyou',
@@ -53,6 +58,10 @@ switch($_SERVER['FYENV'])
             'secure'   => 'tls',
             'port'     => 587
             
+        ];
+        $settings['settings']['search'] = [
+            'host' => 'https://search.flatyou.it',
+            'port' => '9200'
         ];
         break;
 }

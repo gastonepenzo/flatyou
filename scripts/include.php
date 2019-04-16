@@ -4,6 +4,9 @@ define('BASE_PATH', '../src');
 
 $settings = require BASE_PATH . '/src/settings.php';
 
+// Load composer classes
+require BASE_PATH . '/vendor/autoload.php';
+
 // Load db class
 require BASE_PATH . '/src/db.php';
 

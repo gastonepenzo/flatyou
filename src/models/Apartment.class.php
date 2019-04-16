@@ -2,6 +2,7 @@
 
 namespace Flatyou\Models;
 
+use \Elasticsearch\ClientBuilder;
 
 class Apartment extends Model
 {
@@ -187,6 +188,33 @@ class Apartment extends Model
         
         $db->where('id', $this->id);
         return $db->update('apartments', $data);
+    }
+    
+    public function updateSearchIndex()
+    {
+        $search_conf = $GLOBALS['settings']['settings']['search'];
+        $search_node = $search_conf['host'].':'.$search_conf['port'];
+        
+        $clientBuilder = ClientBuilder::create();
+        $clientBuilder->setHosts([$search_node]);
+        $client = $clientBuilder->build();
+        
+        $params = [
+            'index' => 'flatyou',
+            'type' => 'apartments',
+            'id' => $this->code,
+            'body' => [ 'title' => $this->title]
+        ];
+        $response = $client->index($params);
+        var_dump($response);
+        
+        $params = [
+            'index' => 'flatyou',
+            'type' => 'apartments',
+            'id' => $this->code
+        ];
+        $response = $client->get($params);
+        var_dump($response);
     }
     
     public function getMap($width = '640px', $height = '480px', $zoom = 13)

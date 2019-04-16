@@ -2,7 +2,6 @@
 
 require 'include.php';
 
-
 use Flatyou\Models\GoogleGeo;
 use Flatyou\Models\Apartment;
 use Flatyou\Models\User;
